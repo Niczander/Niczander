@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <title>Nic Luxury Motors</title>
+  <link rel="shortcut icon" href="Luxury/screen2.jpeg" type="image/x-icon" />
+
+  <style>
+    /* Base Styles */
+    body {
+      margin: 0;
+      font-family: 'Lato', sans-serif;
+      overflow-x: hidden;
+      background-color: #000;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.5);
+      transition: background 0.5s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(0, 0, 0, 0.9);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      padding: 3px;
+    }
+
+    .menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+
+    /* Enhanced Search Bar in Navigation */
+    .nav-search {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      margin-right: 20px;
+      position: relative;
+    }
+
+    .nav-search input[type="text"] {
+      padding: 8px 15px;
+      width: 200px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      margin-right: 10px;
+      transition: all 0.4s ease;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      font-size: 14px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-search input[type="text"]::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .nav-search input[type="text"]:focus {
+      outline: none;
+      background: rgba(0, 0, 0, 0.8);
+      width: 250px;
+      border-color: aqua;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    }
+
+    .nav-search button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.8), rgba(0, 150, 255, 0.8));
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-search button:hover {
+      background: linear-gradient(135deg, rgba(0, 255, 255, 1), rgba(0, 150, 255, 1));
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+    }
+
+    /* Search Results Dropdown */
+    .search-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 0 0 10px 10px;
+      max-height: 300px;
+      overflow-y: auto;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .search-results.active {
+      display: block;
+      animation: fadeInDown 0.3s ease-out;
+    }
+
+    .search-results a {
+      display: block;
+      padding: 12px 20px;
+      color: #ddd;
+      text-decoration: none;
+      transition: all 0.2s;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .search-results a:hover {
+      background: rgba(0, 150, 255, 0.2);
+      color: white;
+      padding-left: 25px;
+    }
+
+    .search-results a i {
+      margin-right: 10px;
+      color: aqua;
+    }
+
+    /* Social Media Icons Left of Slider - Always Visible */
+    .social-media-left {
+      position: absolute;
+      top: 50%;
+      left: 30px;
+      transform: translateY(-50%);
+      z-index: 3;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 15px 10px;
+      border-radius: 30px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+
+    .social-media-left li a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .social-media-left li a img {
+      width: 20px;
+      height: 20px;
+      transition: all 0.3s ease;
+      filter: brightness(0) invert(1);
+    }
+
+    .social-media-left li a::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #00ffff, #0096ff);
+      top: 0;
+      left: -100%;
+      transition: 0.4s;
+      z-index: -1;
+    }
+
+    .social-media-left li a:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+    }
+
+    .social-media-left li a:hover img {
+      filter: brightness(1) invert(0);
+    }
+
+    .social-media-left li a:hover::before {
+      left: 0;
+    }
+
+    /* Navigation Links */
+    .nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links li {
+      margin: 0 10px;
+      position: relative;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      padding: 5px 0;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: aqua;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: aqua;
+    }
+
+    .menu-btn {
+      display: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Dropdown Menu */
+    .nav-links .dropdown {
+      position: relative;
+    }
+
+    .nav-links .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 160px;
+      z-index: 1;
+      top: 100%;
+      left: 0;
+      border-radius: 8px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      animation: fadeInDown 0.3s ease-out forwards;
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    .nav-links .dropdown-content li a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      transition: all 0.3s;
+    }
+
+    .nav-links .dropdown-content li a:hover {
+      background-color: blue;
+      color: white;
+      padding-left: 20px;
+    }
+
+    .nav-links .dropdown:hover .dropdown-content {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Slider */
+    .slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out, transform 8s ease-in-out;
+      transform: scale(1);
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide:hover {
+      transform: scale(1.05);
+    }
+
+    /* Glass Panel */
+    .glass {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      animation: fadeInUp 1s ease-out both;
+      transition: all 0.5s ease;
+      max-width: 600px;
+    }
+
+    .glass:hover {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .n-glass {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      animation: textGlow 3s ease-in-out infinite alternate;
+    }
+
+    .glass p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    /* Call to Action Button */
+    .cta-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .cta-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 0;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 40px;
+    }
+    .brands-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .brand-card {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    .brand-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(137, 243, 243, 0.5);
+    }
+    .brand-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin: 0 auto 20px;
+    }
+    .brand-card h2 {
+      color: #222;
+      margin: 15px 0;
+      font-size: 1.4rem;
+    }
+    .brand-card p {
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+    .explore-btn {
+      display: inline-block;
+      padding: 8px 20px;
+      background: #0066cc;
+      color: white;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+    .explore-btn:hover {
+      background: #004499;
+    }
+    /* Footer */
+    footer {
+      background-color: #222;
+      color: #fff;
+      padding: 20px 0;
+      animation: fadeIn 1.5s ease-out both;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 220px;
+      margin: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .footer-section:hover {
+      transform: translateY(-5px);
+    }
+
+    .footer-section h4 {
+      font-weight: 900;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-section h4:after {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: aqua;
+    }
+
+    .footer-section ul,
+    .footer-section p,
+    .footer-section a {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .footer-section ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-section ul li a {
+      text-decoration: none;
+      color: #ccc;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .footer-section ul li a:hover {
+      color: #fff;
+      transform: translateX(5px);
+    }
+
+    /* Footer Social Icons - Keep original colors */
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons li {
+      list-style: none;
+    }
+
+    .social-icons li a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      transition: all 0.3s;
+    }
+
+    .social-icons li a img {
+      width: 18px;
+      height: 18px;
+      transition: all 0.3s;
+    }
+
+    .social-icons li a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.1);
+    }
+
+    .social-icons li a:hover img {
+      transform: scale(1.2);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      border-top: 1px solid #444;
+      padding-top: 20px;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .nav-search {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .menu-btn {
+        display: block;
+        order: 2;
+        color: white; /* Ensures hamburger icon is white */
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 250px;
+        background: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        z-index: 100;
+        transform: translateX(100%);
+      }
+
+      .nav-links.active {
+        display: flex;
+        transform: translateX(0);
+      }
+
+      .nav-links li {
+        margin: 15px 0;
+        opacity: 0;
+        animation: fadeInRight 0.5s ease-out forwards;
+      }
+
+      .nav-links li:nth-child(1) { animation-delay: 0.1s; }
+      .nav-links li:nth-child(2) { animation-delay: 0.2s; }
+      .nav-links li:nth-child(3) { animation-delay: 0.3s; }
+      .nav-links li:nth-child(4) { animation-delay: 0.4s; }
+      .nav-links li:nth-child(5) { animation-delay: 0.5s; }
+
+      .social-media-left {
+        left: 10px;
+        top: auto;
+        bottom: 30px;
+        transform: none;
+        flex-direction: row;
+        gap: 10px;
+      }
+
+      .glass {
+        width: 90%;
+        padding: 20px;
+      }
+
+      .n-glass {
+        font-size: 2rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0;
+        transform: translate(-50%, -40%);
+      }
+      to { 
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from { 
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from { 
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes textGlow {
+      from {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+      to {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <!-- Social Media Icons Left of Slider - Always Visible -->
+    <ul class="social-media-left">
+      <li><a href="#"><img src="Luxury/facebook-icon.png" alt="Facebook"></a></li>
+      <li><a href="#"><img src="Luxury/twitter-icon.png" alt="Twitter"></a></li>
+      <li><a href="#"><img src="Luxury/youtube-icon.png" alt="YouTube"></a></li>
+      <li><a href="#"><img src="Luxury/linkedin-icon.png" alt="LinkedIn"></a></li>
+      <li><a href="#"><img src="Luxury/instagram-icon.png" alt="Instagram"></a></li>
+    </ul>
+
+    <nav id="mainNav">
+      <div class="container">
+        <div class="menu">
+          <div class="menu-btn" id="menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+          <ul class="nav-links" id="navLinks">
+            <li><a href="zander.html">Home</a></li>
+            <li><a href="About.html">About Us</a></li>
+            <li class="dropdown">
+              <a href="models.html">Models <i class="fas fa-caret-down"></i></a>
+              <ul class="dropdown-content">
+                <li><a href="models.html#mercedes">Mercedes-Benz</a></li>
+                <li><a href="models.html#toyota">Toyota</a></li>
+                <li><a href="models.html#ford">Ford</a></li>
+                <li><a href="models.html#rollsroyce">Rolls-Royce</a></li>
+                <li><a href="models.html">BMW</a></li>
+              </ul>
+            </li>
+            <li><a href="Shipping.html">Shipping solutions</a></li>
+            <li><a href="login.html">Log in</a></li>
+          </ul>
+          
+          <!-- Enhanced Search Bar in Navigation -->
+          <div class="nav-search">
+            <input type="text" id="searchInput" placeholder="Search models..." />
+            <button type="submit"><i class="fas fa-search"></i></button>
+            <div class="search-results" id="searchResults">
+              <!-- Search results will be populated here by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="slider">
+      <div class="slide active" style="background-image: url('Luxury/img2.jpeg');"></div>
+      <div class="slide" style="background-image: url('Luxury/img7.jpeg');"></div>
+      <div class="slide" style="background-image: url('Luxury/screen.jpeg');"></div>
+    </div>
+
+    <div class="glass">
+      <h1 class="n-glass">Elevate Your Journey</h1>
+      <div>
+        <h2>Premium Automotive Excellence</h2>
+        <p>Discover the pinnacle of automotive craftsmanship with our curated collection of the world's most prestigious vehicles. Each model is a testament to engineering perfection and timeless design.</p>
+        <a href="models.html" class="cta-btn">Explore Models <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="brands-grid">
+      
+      <!-- Mercedes-Benz -->
+      <div class="brand-card">
+        <img src="luxury/mer logo.jpg" alt="Mercedes-Benz" class="brand-logo">
+        <h2>Mercedes-Benz</h2>
+        <p>German luxury known for premium quality and cutting-edge technology</p>
+        <a href="models.html" class="explore-btn" style="background:#00A0B6">View Models</a>
+      </div>
+      
+      <!-- Toyota -->
+      <div class="brand-card">
+        <img src="luxury/toyo.jpg" alt="Toyota" class="brand-logo">
+        <h2>Toyota</h2>
+        <p>Japanese reliability with legendary durability and efficiency</p>
+        <a href="models.html" class="explore-btn" style="background:#EB0A1E">View Models</a>
+      </div>
+      
+      <!-- Ford -->
+      <div class="brand-card">
+        <img src="luxury/ford_logo.jpg" alt="Ford" class="brand-logo">
+        <h2>Ford</h2>
+        <p>American heritage with powerful performance and adventure-ready</p>
+        <a href="models.html" class="explore-btn" style="background:#003478">View Models</a>
+      </div>
+      
+      <!-- Rolls-Royce -->
+      <div class="brand-card">
+        <img src="luxury/rolls logo.jpg" alt="Rolls-Royce" class="brand-logo">
+        <h2>Rolls-Royce</h2>
+        <p>British ultra-luxury with handcrafted perfection and exclusivity</p>
+        <a href="models.html" class="explore-btn" style="background:#000000">View Models</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>About Us</h4>
+        <p>Nic Luxury Motors is committed to delivering the finest in luxury cars, with impeccable style and performance.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="zander.html">Home</a></li>
+          <li><a href="About.html">About Us</a></li>
+          <li><a href="models.html">Models</a></li>
+          <li><a href="Shipping.html">Shipping solutions</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+      <h4>Follow Us</h4>
+    <ul class="social-icons">
+      <li><a href="#"><img src="Luxury/facebook-icon.png" alt="facebook"></a></li>
+      <li><a href="#"><img src="Luxury/twitter-icon.png" alt="twitter"></a></li>
+      <li><a href="#"><img src="Luxury/youtube-icon.png" alt="youtube"></a></li>
+      <li><a href="#"><img src="Luxury/linkedin-icon.png" alt="linkedin"></a></li>
+      <li><a href="#"><img src="Luxury/instagram-icon.png" alt="instagram"></a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p>123 Nic Luxury Avenue,Kampala, Uganda</p>
+        <p>Phone: +256 760 845198</p>
+        <p>Phone: +256 742 505141</p>
+        <p>Email: info@nicluxurymotors.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Nic Luxury Motors. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Enhanced Search Functionality
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    
+    // Sample search data (would normally come from a database)
+    const carModels = [
+      { name: "Mercedes-Benz S-Class", category: "Luxury Sedan", link: "models.html#mercedes" },
+      { name: "Toyota Land Cruiser", category: "Premium SUV", link: "models.html#toyota" },
+      { name: "Ford Mustang GT", category: "Sports Car", link: "models.html#ford" },
+      { name: "Rolls-Royce Phantom", category: "Ultra Luxury", link: "models.html#rollsroyce" },
+      { name: "Mercedes-Benz G-Wagon", category: "Luxury SUV", link: "models.html#mercedes" },
+      { name: "Toyota Supra", category: "Sports Car", link: "models.html#toyota" },
+      { name: "Ford Raptor", category: "Performance Truck", link: "models.html#ford" }
+    ];
+
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      searchResults.innerHTML = '';
+      
+      if (searchTerm.length > 0) {
+        const filteredModels = carModels.filter(model => 
+          model.name.toLowerCase().includes(searchTerm) || 
+          model.category.toLowerCase().includes(searchTerm))
+          .slice(0, 5); // Limit to 5 results
+        
+        if (filteredModels.length > 0) {
+          filteredModels.forEach(model => {
+            const resultItem = document.createElement('a');
+            resultItem.href = model.link;
+            resultItem.innerHTML = `
+              <i class="fas fa-car"></i>
+              <span>
+                <strong>${model.name}</strong><br>
+                <small>${model.category}</small>
+              </span>
+            `;
+            searchResults.appendChild(resultItem);
+          });
+          searchResults.classList.add('active');
+        } else {
+          const noResults = document.createElement('div');
+          noResults.className = 'no-results';
+          noResults.textContent = 'No matching models found';
+          searchResults.appendChild(noResults);
+          searchResults.classList.add('active');
+        }
+      } else {
+        searchResults.classList.remove('active');
+      }
+    });
+
+    // Close search results when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!searchInput.contains(e.target)) {
+        searchResults.classList.remove('active');
+      }
+    });
+
+    // Slider functionality
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    // Start slideshow
+    setInterval(nextSlide, 5000);
+    showSlide(currentSlide);
+
+    // Hamburger menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const navLinks = document.getElementById('navLinks');
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuBtn.innerHTML = navLinks.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scrolling for all links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Animate elements when they come into view
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.footer-section');
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementPosition < windowHeight - 100) {
+          element.style.animationPlayState = 'running';
+        }
+      });
+    };
+
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+  </script>
+</body>
+</html>

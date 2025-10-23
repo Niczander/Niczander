@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+<title>Models - Nic Luxury Motors</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+<link rel="shortcut icon" href="Luxury/screen2.jpeg" type="image/x-icon" />
+<style>
+  
+  :root {
+      --primary-color: #00ffff;
+      --secondary-color: #0096ff;
+      --dark-bg: #000;
+      --text-light: #fff;
+      --text-gray: #ccc;
+      --footer-bg: #111;
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Lato', sans-serif;
+      overflow-x: hidden;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* Header & Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.5);
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+    }
+
+    nav.scrolled {
+      background: rgba(0, 0, 0, 0.95);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      padding: 5px 0;
+    }
+
+    .menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+
+    /* Search Bar */
+    .nav-search {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      margin-right: 20px;
+      position: relative;
+    }
+
+    .nav-search input[type="text"] {
+      padding: 10px 20px;
+      width: 200px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      margin-right: 10px;
+      transition: var(--transition);
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      font-size: 14px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-search input[type="text"]::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .nav-search input[type="text"]:focus {
+      outline: none;
+      background: rgba(0, 0, 0, 0.8);
+      width: 250px;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    }
+
+    .nav-search button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.8), rgba(0, 150, 255, 0.8));
+      color: white;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-search button:hover {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+    }
+    /* Search Bar Responsive Styles */
+.nav-search {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 20px;
+  position: relative;
+}
+
+/* Search icon for mobile */
+.search-icon-mobile {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 15px;
+  transition: var(--transition);
+}
+
+.search-icon-mobile:hover {
+  color: var(--primary-color);
+}
+
+/* Mobile search container */
+.mobile-search-container {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 1001;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-search-container.active {
+  display: block;
+  animation: fadeInDown 0.3s ease-out;
+}
+
+.mobile-search-container .nav-search {
+  width: 100%;
+  margin: 0;
+}
+
+.mobile-search-container input[type="text"] {
+  width: 100% !important;
+}
+
+@media (max-width: 992px) {
+  .nav-search {
+    display: none;
+  }
+  
+  .search-icon-mobile {
+    display: block;
+  }
+}
+
+@media (min-width: 993px) {
+  .mobile-search-container {
+    display: none !important;
+  }
+}
+
+    /* Navigation Links */
+    .nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links li {
+      margin: 0 15px;
+      position: relative;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      padding: 5px 0;
+      position: relative;
+      transition: var(--transition);
+      font-size: 16px;
+    }
+
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .menu-btn {
+      display: none;
+      color: var(--text-light);
+      font-size: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: transform 0.3s ease;
+      z-index: 1001;
+    }
+
+    .menu-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Dropdown Menu */
+    .nav-links .dropdown {
+      position: relative;
+    }
+
+    .nav-links .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 200px;
+      z-index: 1;
+      top: 100%;
+      left: 0;
+      border-radius: 8px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      animation: fadeInDown 0.3s ease-out forwards;
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    .nav-links .dropdown-content li a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .nav-links .dropdown-content li a:hover {
+      background-color: var(--secondary-color);
+      color: white;
+      padding-left: 20px;
+    }
+
+    .nav-links .dropdown:hover .dropdown-content {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Social Media Icons */
+    .social-media {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-media li a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .social-media li a img {
+      width: 20px;
+      height: 20px;
+      transition: var(--transition);
+    }
+
+    .social-media li a::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      top: 0;
+      left: -100%;
+      transition: 0.4s;
+      z-index: -1;
+    }
+
+    .social-media li a:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+    }
+
+    .social-media li a:hover img {
+      transform: scale(1.2);
+    }
+
+    .social-media li a:hover::before {
+      left: 0;
+    }
+    /* Shipping Solutions Page Styles */
+  .shipping-solutions {
+    padding-top: 80px;
+    color: var(--text-light);
+  }
+
+  /* Hero Section */
+  .shipping-hero {
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    background: url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 96, 255, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 150, 255, 0.4);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 150, 255, 0.6);
+  }
+
+  .pulse {
+    animation: pulse 2s infinite;
+  }
+
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-header h2:after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 3px;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  }
+
+  .section-header p {
+    font-size: 1.2rem;
+    color: var(--text-gray);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Features Grid */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+  }
+
+  .feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 30px;
+    transition: var(--transition);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .feature-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 150, 255, 0.1);
+  }
+
+  .feature-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(0, 150, 255, 0.2));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+    color: var(--primary-color);
+  }
+
+  .feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .feature-card p {
+    color: var(--text-gray);
+  }
+
+  /* Countries Grid */
+  .countries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+  }
+
+  .country-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  .country-card:nth-child(1) { animation-delay: 0.1s; }
+  .country-card:nth-child(2) { animation-delay: 0.3s; }
+  .country-card:nth-child(3) { animation-delay: 0.5s; }
+  .country-card:nth-child(4) { animation-delay: 0.7s; }
+
+  .country-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 150, 255, 0.2);
+  }
+
+  .country-flag {
+    height: 180px;
+    overflow: hidden;
+  }
+
+  .country-flag img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .country-card:hover .country-flag img {
+    transform: scale(1.1);
+  }
+
+  .country-content {
+    padding: 25px;
+  }
+
+  .country-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+
+  .brands {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+
+  .brand-tag {
+    background: rgba(0, 150, 255, 0.2);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+  }
+
+  .shipping-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+  }
+
+  .shipping-methods {
+    margin-top: 20px;
+  }
+
+  .shipping-methods span {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-gray);
+  }
+
+  .methods {
+    display: flex;
+    gap: 10px;
+  }
+
+  .method {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  .air { background: rgba(0, 255, 200, 0.2); color: #00ffc8; }
+  .sea { background: rgba(0, 150, 255, 0.2); color: #0096ff; }
+  .land { background: rgba(255, 200, 0, 0.2); color: #ffc800; }
+
+  /* Process Timeline */
+  .process-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 0;
+  }
+
+  .process-timeline:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50px;
+    height: 100%;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+  }
+
+  .process-step {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 100px;
+    animation: fadeInRight 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  .process-step:nth-child(1) { animation-delay: 0.2s; }
+  .process-step:nth-child(2) { animation-delay: 0.4s; }
+  .process-step:nth-child(3) { animation-delay: 0.6s; }
+  .process-step:nth-child(4) { animation-delay: 0.8s; }
+
+  .step-number {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 150, 255, 0.4);
+  }
+
+  .step-content {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+  }
+
+  .process-step:hover .step-content {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+  }
+
+  .step-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+  }
+
+  /* Quote Form */
+  .quote-form {
+    padding: 100px 0;
+    background: url('https://images.unsplash.com/photo-1581093450021-4a7360e9a6e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+    background-size: cover;
+    position: relative;
+  }
+
+  .quote-form:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .form-container {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .form-header h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .shipping-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-family: 'Lato', sans-serif;
+    transition: var(--transition);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 10px;
+  }
+
+  .submit-btn:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 150, 255, 0.4);
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 15px rgba(0, 255, 255, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(0, 255, 255, 0);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+    
+    .process-timeline:before {
+      left: 25px;
+    }
+    
+    .process-step {
+      padding-left: 70px;
+    }
+    
+    .step-number {
+      left: 5px;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+    }
+    
+    .form-container {
+      padding: 30px 20px;
+    }
+  }
+    
+    /* Footer Styles */
+    footer {
+      background-color: var(--footer-bg);
+      color: var(--text-light);
+      padding: 50px 0 20px;
+      animation: fadeIn 1.5s ease-out both;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 30px;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 220px;
+      transition: var(--transition);
+    }
+
+    .footer-section:hover {
+      transform: translateY(-5px);
+    }
+
+    .footer-section h4 {
+      font-weight: 900;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      font-size: 18px;
+    }
+
+    .footer-section h4:after {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 2px;
+      bottom: -8px;
+      left: 0;
+      background-color: var(--primary-color);
+    }
+
+    .footer-section ul,
+    .footer-section p,
+    .footer-section a {
+      font-size: 14px;
+      color: var(--text-gray);
+    }
+
+    .footer-section ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-section ul li a {
+      text-decoration: none;
+      color: var(--text-gray);
+      transition: var(--transition);
+      display: inline-block;
+    }
+
+    .footer-section ul li a:hover {
+      color: var(--text-light);
+      transform: translateX(5px);
+    }
+
+    /* Footer Social Icons */
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icons li {
+      list-style: none;
+    }
+
+    .social-icons li a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      transition: var(--transition);
+    }
+
+    .social-icons li a img {
+      width: 18px;
+      height: 18px;
+      transition: var(--transition);
+    }
+
+    .social-icons li a:hover {
+      background: var(--primary-color);
+      transform: scale(1.1);
+    }
+
+    .social-icons li a:hover img {
+      transform: scale(1.2);
+      filter: brightness(0) invert(0);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 50px;
+      border-top: 1px solid #444;
+      padding-top: 20px;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: var(--text-gray);
+    }
+</style>
+</head>
+
+<body>
+  <nav id="mainNav" aria-label="Main navigation">
+    <div class="container">
+      <div class="menu">
+        <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="About.html">About Us</a></li>
+          <li class="dropdown">
+            <a href="models.html">Models <i class="fas fa-caret-down"></i></a>
+            <ul class="dropdown-content">
+              <li><a href="models.html">Mercedes-Benz</a></li>
+              <li><a href="models.html">Toyota</a></li>
+              <li><a href="models.html">Ford</a></li>
+              <li><a href="models.html">Rolls-Royce</a></li>
+              <li><a href="models.html">BMW</a></li>
+            </ul>
+          </li>
+          <li><a href="Shipping.html">Shipping solutions</a></li>
+          <li><a href="login.html">Log in</a></li>
+        </ul>
+        
+        <!-- Desktop Search -->
+        <div class="nav-search">
+          <input type="text" id="searchInput" placeholder="Search models..." aria-label="Search models" />
+          <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <!-- Mobile Search Icon -->
+        <button class="search-icon-mobile" id="searchToggle" aria-label="Toggle search">
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <ul class="social-media" aria-label="Social media links">
+          <li><a href="#" aria-label="Facebook"><img src="Luxury/facebook-icon.png" alt="Facebook"></a></li>
+          <li><a href="#" aria-label="Twitter"><img src="Luxury/twitter-icon.png" alt="Twitter"></a></li>
+          <li><a href="#" aria-label="YouTube"><img src="Luxury/youtube-icon.png" alt="YouTube"></a></li>
+          <li><a href="#" aria-label="LinkedIn"><img src="Luxury/linkedin-icon.png" alt="LinkedIn"></a></li>
+          <li><a href="#" aria-label="Instagram"><img src="Luxury/instagram-icon.png" alt="Instagram"></a></li>
+        </ul>
+      </div>
+      
+      <!-- Mobile Search Container -->
+      <div class="mobile-search-container" id="mobileSearch">
+        <div class="nav-search">
+          <input type="text" id="mobileSearchInput" placeholder="Search models..." aria-label="Search models" />
+          <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+<main class="shipping-solutions">
+  <!-- Hero Section -->
+  <section class="shipping-hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Nic Luxury Shipping Solutions</h1>
+        <p class="hero-subtitle">Seamless worldwide delivery for your luxury vehicle</p>
+        <a href="#shipping-form" class="cta-button pulse">order for shipping</a>
+      </div>
+    </div>
+  </section>
+  <!-- Shipping Intro -->
+  <section class="shipping-intro">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Shipping Expertise</h2>
+        <p>We handle all aspects of international vehicle transportation with white-glove service</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Fully Insured</h3>
+          <p>Comprehensive coverage for your vehicle's entire journey</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3>Worldwide Network</h3>
+          <p>Door-to-door service to over 150 countries</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <3>Secure Transport</h3>
+          <p>Discreet, monitored shipping for high-value vehicles</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Origin Countries -->
+  <section class="origin-countries">
+    <div class="container">
+      <div class="section-header">
+        <h2>Vehicle Origins</h2>
+        <p>Our luxury brands come from these prestigious manufacturing hubs</p>
+      </div>
+      <div class="countries-grid">
+        <!-- Germany Card -->
+        <div class="country-card" data-country="germany">
+          <div class="country-flag">
+            <img src="https://flagcdn.com/w160/de.png" alt="Germany Flag" loading="lazy">
+          </div>
+          <div class="country-content">
+            <h3>Germany</h3>
+            <div class="brands">
+              <span class="brand-tag">Mercedes-Benz</span>
+              <span class="brand-tag">BMW</span>
+              <span class="brand-tag">Porsche</span>
+              <span class="brand-tag">Audi</span>
+            </div>
+            <p class="shipping-info">
+              <i class="fas fa-shipping-fast"></i> Avg. shipping time: 10-14 days
+            </p>
+            <div class="shipping-methods">
+              <span>Available Methods:</span>
+              <div class="methods">
+                <span class="method air">Air</span>
+                <span class="method sea">Sea</span>
+                <span class="method land">Land</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Japan Card -->
+        <div class="country-card" data-country="japan">
+          <div class="country-flag">
+            <img src="https://flagcdn.com/w160/jp.png" alt="Japan Flag" loading="lazy">
+          </div>
+          <div class="country-content">
+            <h3>Japan</h3>
+            <div class="brands">
+              <span class="brand-tag">Lexus</span>
+              <span class="brand-tag">Toyota</span>
+              <span class="brand-tag">Infiniti</span>
+              <span class="brand-tag">Acura</span>
+            </div>
+            <p class="shipping-info">
+              <i class="fas fa-shipping-fast"></i> Avg. shipping time: 14-21 days
+            </p>
+            <div class="shipping-methods">
+              <span>Available Methods:</span>
+              <div class="methods">
+                <span class="method air">Air</span>
+                <span class="method sea">Sea</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- UK Card -->
+        <div class="country-card" data-country="uk">
+          <div class="country-flag">
+            <img src="https://flagcdn.com/w160/gb.png" alt="UK Flag" loading="lazy">
+          </div>
+          <div class="country-content">
+            <h3>United Kingdom</h3>
+            <div class="brands">
+              <span class="brand-tag">Rolls-Royce</span>
+              <span class="brand-tag">Bentley</span>
+              <span class="brand-tag">Land Rover</span>
+              <span class="brand-tag">Aston Martin</span>
+            </div>
+            <p class="shipping-info">
+              <i class="fas fa-shipping-fast"></i> Avg. shipping time: 7-12 days
+            </p>
+            <div class="shipping-methods">
+              <span>Available Methods:</span>
+              <div class="methods">
+                <span class="method air">Air</span>
+                <span class="method sea">Sea</span>
+                <span class="method land">Land</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- USA Card -->
+        <div class="country-card" data-country="usa">
+          <div class="country-flag">
+            <img src="https://flagcdn.com/w160/us.png" alt="USA Flag" loading="lazy">
+          </div>
+          <div class="country-content">
+            <h3>United States</h3>
+            <div class="brands">
+              <span class="brand-tag">Tesla</span>
+              <span class="brand-tag">Ford</span>
+              <span class="brand-tag">Cadillac</span>
+              <span class="brand-tag">Lincoln</span>
+            </div>
+            <p class="shipping-info">
+              <i class="fas fa-shipping-fast"></i> Avg. shipping time: 5-10 days
+            </p>
+            <div class="shipping-methods">
+              <span>Available Methods:</span>
+              <div class="methods">
+                <span class="method air">Air</span>
+                <span class="method sea">Sea</span>
+                <span class="method land">Land</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shipping Process -->
+  <section class="shipping-process">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Shipping Process</h2>
+        <p>Four simple steps to get your luxury vehicle safely to your doorstep</p>
+      </div>
+      <div class="process-timeline">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Vehicle Preparation</h3>
+            <p>Professional detailing and protective wrapping for transit</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Customs Documentation</h3>
+            <p>We handle all import/export paperwork and compliance</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Secure Transport</h3>
+            <p>GPS-tracked shipping with climate-controlled options</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Final Delivery</h3>
+            <p>White-glove delivery and inspection at your location</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Form -->
+  <section class="quote-form" id="shipping-form">
+    <div class="container">
+      <div class="form-container">
+        <div class="form-header">
+          <h2>Request a Shipping Quote</h2>
+          <p>Complete the form below and our shipping specialists will contact you within 24 hours</p>
+        </div>
+        <form class="shipping-form">
+          <div class="form-group">
+            <label for="vehicle">Vehicle Model</label>
+            <input type="text" id="vehicle" name="vehicle" required>
+          </div>
+          <div class="form-group">
+            <label for="origin">Origin Country</label>
+            <select id="origin" name="origin" required>
+              <option value="">Select origin</option>
+              <option value="germany">Germany</option>
+              <option value="japan">Japan</option>
+              <option value="uk">United Kingdom</option>
+              <option value="usa">United States</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="destination">Destination Country</label>
+            <select id="destination" name="destination" required>
+              <option value="">Select destination</option>
+              <option value="UG">Uganda</option>
+              <option value="Ken">Kenya</option>
+              <option value="TZ">Tanzania</option>
+              <option value="SUD">Sudan</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="method">Preferred Shipping Method</label>
+            <select id="method" name="method" required>
+              <option value="">Select method</option>
+              <option value="air">Air Freight (Fastest)</option>
+              <option value="sea">Ocean Freight (Most Economical)</option>
+              <option value="land">Ground Transport (Regional)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <button type="submit" class="submit-btn">Get Quote <i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="container">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>About Us</h4>
+        <p>Nic Luxury Motors is committed to delivering the finest in luxury cars, with impeccable style and performance.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="zander.html">Home</a></li>
+          <li><a href="About.html">About Us</a></li>
+          <li><a href="models.html">Models</a></li>
+          <li><a href="Shipping.html">Shipping solutions</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <ul class="social-icons">
+          <li><a href="#" aria-label="Facebook"><img src="Luxury/facebook-icon.png" alt="facebook"></a></li>
+          <li><a href="#" aria-label="Twitter"><img src="Luxury/twitter-icon.png" alt="twitter"></a></li>
+          <li><a href="#" aria-label="YouTube"><img src="Luxury/youtube-icon.png" alt="youtube"></a></li>
+          <li><a href="#" aria-label="LinkedIn"><img src="Luxury/linkedin-icon.png" alt="linkedin"></a></li>
+          <li><a href="#" aria-label="Instagram"><img src="Luxury/instagram-icon.png" alt="instagram"></a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <address>
+          <p>123 Nic Luxury Avenue,Kampala, Uganda</p>
+          <p>Phone: <a href="tel:+256760845198">+256 760 845198</a></p>
+          <p>Phone: <a href="tel:+256742505141">+256 742 505141</a></p>
+          <p>Email: <a href="mailto:info@nicluxurymotors.com">info@nicluxurymotors.com</a></p>
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="currentYear">2025</span> Nic Luxury Motors. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Update the current year in the footer
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+  
+  // Add scroll event listener for navbar
+  window.addEventListener('scroll', function() {
+    const nav = document.getElementById('mainNav');
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+  // Mobile search toggle
+const searchToggle = document.getElementById('searchToggle');
+const mobileSearch = document.getElementById('mobileSearch');
+const mobileSearchInput = document.getElementById('mobileSearchInput');
+
+searchToggle.addEventListener('click', function(e) {
+  e.stopPropagation();
+  mobileSearch.classList.toggle('active');
+  
+  if (mobileSearch.classList.contains('active')) {
+    mobileSearchInput.focus();
+  }
+});
+
+// Close mobile search when clicking outside
+document.addEventListener('click', function(e) {
+  if (!mobileSearch.contains(e.target) && e.target !== searchToggle) {
+    mobileSearch.classList.remove('active');
+  }
+});
+
+// Close mobile search when pressing Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    mobileSearch.classList.remove('active');
+  }
+});
+
+// Search functionality (same for both desktop and mobile)
+function handleSearch(query) {
+  // Implement your search logic here
+  console.log('Searching for:', query);
+  // You can redirect to a search results page or filter content
+}
+
+// Desktop search
+document.querySelector('.nav-search button').addEventListener('click', function() {
+  const query = document.getElementById('searchInput').value.trim();
+  if (query) handleSearch(query);
+});
+
+// Mobile search
+document.querySelector('.mobile-search-container .nav-search button').addEventListener('click', function() {
+  const query = mobileSearchInput.value.trim();
+  if (query) {
+    handleSearch(query);
+    mobileSearch.classList.remove('active');
+  }
+});
+
+// Allow search on Enter key
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    const query = this.value.trim();
+    if (query) handleSearch(query);
+  }
+});
+
+mobileSearchInput.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    const query = this.value.trim();
+    if (query) {
+      handleSearch(query);
+      mobileSearch.classList.remove('active');
+    }
+  }
+});
+  // Mobile menu toggle
+  document.getElementById('menu-btn').addEventListener('click', function() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('active');
+    this.setAttribute('aria-expanded', 
+      this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false'
+    );
+  });
+  // Animate elements when they come into view
+  document.addEventListener('DOMContentLoaded', function() {
+    const animateOnScroll = function() {
+      const elements = document.querySelectorAll('.country-card, .process-step');
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementPosition < windowHeight - 100) {
+          element.style.animationPlayState = 'running';
+        }
+      });
+    };
+    
+    // Run once on load
+    animateOnScroll();
+    
+    // Then run on scroll
+    window.addEventListener('scroll', animateOnScroll);
+    
+    // Form submission
+    const shippingForm = document.querySelector('.shipping-form');
+    if (shippingForm) {
+      shippingForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your shipping request! Our team will contact you within 24 hours.');
+        this.reset();
+      });
+    }
+  });
+</script>
+</body>
+</html>

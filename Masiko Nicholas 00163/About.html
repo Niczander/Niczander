@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+<title>About Us - Nic Luxury Motors</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<link rel="shortcut icon" href="Luxury/screen2.jpeg" type="image/x-icon" />
+<style>
+    /* Base Styles */
+    :root {
+        --primary-color: #00ffff;
+        --secondary-color: #000;
+        --text-color: #fff;
+        --text-secondary: #ddd;
+        --accent-color: rgba(0, 255, 255, 0.3);
+        --bg-dark: #111;
+    }
+    
+    body {
+        margin: 0;
+        font-family: 'Lato', sans-serif;
+        overflow-x: hidden;
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        border-radius: 10px;
+    }
+
+    /* Enhanced Navigation */
+    nav {
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.5);
+        transition: background 0.5s ease;
+    }
+
+    nav.scrolled {
+        background: rgba(0, 0, 0, 0.9);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    /* Enhanced Social Media Icons */
+    .social-media {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 15px;
+    }
+
+    .social-media li a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .social-media li a img {
+        width: 24px;
+        height: 24px;
+        transition: all 0.3s ease;
+    }
+
+    .social-media li a::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        top: 0;
+        left: -100%;
+        transition: 0.4s;
+        z-index: -1;
+    }
+
+    .social-media li a:hover {
+        transform: translateY(-5px) scale(1.1);
+        box-shadow: 0 5px 15px var(--accent-color);
+    }
+
+    .social-media li a:hover img {
+        transform: scale(1.2);
+    }
+
+    .social-media li a:hover::before {
+        left: 0;
+    }
+
+    /* Navigation Links with Enhanced Animations */
+    .nav-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-links li {
+        margin: 0 15px;
+        position: relative;
+    }
+
+    .nav-links a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        padding: 5px 0;
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links a:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--primary-color);
+        transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover:after {
+        width: 100%;
+    }
+
+    .nav-links a:hover {
+        color: var(--primary-color);
+    }
+
+    /* Dropdown Menu */
+    .nav-links .dropdown {
+        position: relative;
+    }
+
+    .nav-links .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        min-width: 160px;
+        z-index: 1;
+        top: 100%;
+        left: 0;
+        border-radius: 8px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        animation: fadeInDown 0.3s ease-out forwards;
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    .nav-links .dropdown-content li a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        transition: all 0.3s;
+    }
+
+    .nav-links .dropdown-content li a:hover {
+        background-color: blue;
+        color: white;
+        padding-left: 20px;
+    }
+
+    .nav-links .dropdown:hover .dropdown-content {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Menu Button */
+    .menu-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: none;
+    }
+
+    /* About Section */
+    .about-section {
+        padding: 150px 0 80px;
+        animation: fadeIn 1s ease-out both;
+    }
+
+    .about-section h1 {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 50px;
+        color: var(--text-color);
+        animation: textGlow 3s ease-in-out infinite alternate;
+    }
+
+    .about-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 50px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 30px;
+        transition: all 0.5s ease;
+        animation: fadeInUp 1s ease-out both;
+    }
+
+    .about-container:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px var(--accent-color);
+    }
+
+    .about-container img {
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 15px;
+        transition: transform 0.5s ease;
+    }
+
+    .about-container:hover img {
+        transform: scale(1.05);
+    }
+
+    .about-container .text {
+        flex: 1;
+        padding: 0 30px;
+    }
+
+    .about-container .text h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        color: var(--text-color);
+    }
+
+    .about-container .text p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--text-secondary);
+    }
+
+    .about-container.reverse {
+        flex-direction: row-reverse;
+        animation-delay: 0.2s;
+    }
+
+    /* Mission/Vision Boxes */
+    .mission-vision-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 50px;
+        gap: 20px;
+        animation: fadeIn 1s ease-out both;
+        animation-delay: 0.4s;
+    }
+
+    .mission-box,
+    .vision-box {
+        flex: 1;
+        min-height: 300px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        color: var(--text-color);
+        text-align: center;
+        padding: 40px 20px;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.5s ease;
+    }
+
+    .mission-box {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('Luxury/img1.jpeg');
+    }
+
+    .vision-box {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('Luxury/img3.jpeg');
+    }
+
+    .mission-box:hover,
+    .vision-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px var(--accent-color);
+    }
+
+    .mission-box h2,
+    .vision-box h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+    }
+
+    .mission-box p,
+    .vision-box p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* Map Section */
+    .map-section {
+        width: 100%;
+        border-radius: 15px;
+        margin: 50px auto;
+        overflow: hidden;
+        animation: fadeIn 1s ease-out both;
+        animation-delay: 0.6s;
+    }
+
+    .map-section h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        color: var(--text-color);
+    }
+
+    #map {
+        height: 500px;
+        width: 100%;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: all 0.5s ease;
+    }
+
+    #map:hover {
+        box-shadow: 0 15px 40px var(--accent-color);
+    }
+
+    /* Footer Styles */
+    footer {
+        background-color: var(--bg-dark);
+        color: var(--text-color);
+        padding: 50px 0 20px;
+        animation: fadeIn 1.5s ease-out both;
+    }
+
+    .footer-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        gap: 30px;
+    }
+
+    .footer-section {
+        flex: 1;
+        min-width: 220px;
+        transition: all 0.3s ease;
+    }
+
+    .footer-section:hover {
+        transform: translateY(-5px);
+    }
+
+    .footer-section h4 {
+        font-weight: 900;
+        margin-bottom: 20px;
+        position: relative;
+        display: inline-block;
+        font-size: 18px;
+    }
+
+    .footer-section h4:after {
+        content: '';
+        position: absolute;
+        width: 50px;
+        height: 2px;
+        bottom: -8px;
+        left: 0;
+        background-color: var(--primary-color);
+    }
+
+    .footer-section ul,
+    .footer-section p,
+    .footer-section a {
+        font-size: 14px;
+        color: #ccc;
+    }
+
+    .footer-section ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 12px;
+    }
+
+    .footer-section ul li a {
+        text-decoration: none;
+        color: #ccc;
+        transition: all 0.3s;
+        display: inline-block;
+    }
+
+    .footer-section ul li a:hover {
+        color: var(--text-color);
+        transform: translateX(5px);
+    }
+
+    /* Footer Social Icons */
+    .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .social-icons li {
+        list-style: none;
+    }
+
+    .social-icons li a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.1);
+        transition: all 0.3s;
+    }
+
+    .social-icons li a img {
+        width: 18px;
+        height: 18px;
+        transition: all 0.3s;
+    }
+
+    .social-icons li a:hover {
+        background: var(--primary-color);
+        transform: scale(1.1);
+    }
+
+    .social-icons li a:hover img {
+        transform: scale(1.2);
+        filter: brightness(0) invert(0);
+    }
+
+    .footer-bottom {
+        text-align: center;
+        margin-top: 50px;
+        border-top: 1px solid #444;
+        padding-top: 20px;
+    }
+
+    .footer-bottom p {
+        font-size: 12px;
+        color: #aaa;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        .about-container,
+        .about-container.reverse {
+            flex-direction: column;
+        }
+
+        .about-container img {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        
+        .footer-container {
+            gap: 20px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .menu-btn {
+            display: block;
+        }
+
+        .nav-links {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 250px;
+            background: rgba(0, 0, 0, 0.95);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 100;
+            transform: translateX(100%);
+        }
+
+        .nav-links.active {
+            display: flex;
+            transform: translateX(0);
+        }
+
+        .nav-links li {
+            margin: 15px 0;
+            opacity: 0;
+            animation: fadeInRight 0.5s ease-out forwards;
+        }
+
+        .nav-links li:nth-child(1) { animation-delay: 0.1s; }
+        .nav-links li:nth-child(2) { animation-delay: 0.2s; }
+        .nav-links li:nth-child(3) { animation-delay: 0.3s; }
+        .nav-links li:nth-child(4) { animation-delay: 0.4s; }
+        .nav-links li:nth-child(5) { animation-delay: 0.5s; }
+
+        .social-media {
+            display: none;
+        }
+
+        .mission-vision-container {
+            flex-direction: column;
+        }
+
+        #map {
+            height: 400px;
+        }
+        
+        .footer-section {
+            min-width: 100%;
+        }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+        from { 
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to { 
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInDown {
+        from { 
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to { 
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInRight {
+        from { 
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        to { 
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes textGlow {
+        from {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        to {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+    }
+</style>
+</head>
+<body>
+<nav id="mainNav">
+<div class="container">
+    <div class="menu">
+    <ul class="social-media">
+        <li><a href="#"><img src="Luxury/facebook-icon.png" alt="Facebook"></a></li>
+        <li><a href="#"><img src="Luxury/twitter-icon.png" alt="Twitter"></a></li>
+        <li><a href="#"><img src="Luxury/youtube-icon.png" alt="YouTube"></a></li>
+        <li><a href="#"><img src="Luxury/linkedin-icon.png" alt="LinkedIn"></a></li>
+        <li><a href="#"><img src="Luxury/instagram-icon.png" alt="Instagram"></a></li>
+    </ul>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="About.html">About us</a></li>
+        <li class="dropdown">
+            <a href="models.html">Models <i class="fas fa-caret-down"></i></a>
+            <ul class="dropdown-content">
+                <li><a href="models.html#mercedes">Mercedes-Benz</a></li>
+                <li><a href="models.html#toyota">Toyota</a></li>
+                <li><a href="models.html#ford">Ford</a></li>
+                <li><a href="models.html#rollsroyce">Rolls-Royce</a></li>
+                <li><a href="models.html">BMW</a></li>
+            </ul>
+        </li>
+        <li><a href="Shipping.html">Shipping solutions</a></li>
+        <li><a href="login.html">Log in</a></li>
+    </ul>
+    <button class="menu-btn" id="menuBtn">
+        <i class="fas fa-bars"></i>
+    </button>
+    </div>
+</div>
+</nav>
+
+<section class="about-section">
+<div class="container">
+    <h1>About Us</h1>
+
+    <div class="about-container">
+    <img src="Luxury/CEO88.jpg" alt="Manager Photo" />
+    <div class="text">
+        <h2>Masiko Nicholas - CEO</h2>
+        <p>Masiko Nicholas is the CEO at Nic Luxury Motors, bringing a wealth of experience in the automotive industry. With a passion for luxury cars, he has been pivotal in ensuring our brand delivers top-tier performance and customer satisfaction.</p>
+    </div>
+    </div>
+
+    <div class="about-container reverse">
+    <img src="Luxury/dman.jpg" alt="Managing Director Photo" />
+    <div class="text">
+        <h2>Birungi Joan Ithungu - Managing Director</h2>
+        <p>Birungi Joan Ithungu, the Managing Director of Nic Luxury Motors, is a visionary leader committed to innovation in the luxury car market. Her strategic insights have driven the company's growth and set a high standard for the future of luxury vehicles.</p>
+    </div>
+    </div>
+
+    <div class="about-container">
+    <img src="Luxury/dire.jpg" alt="Accountant Photo" />
+    <div class="text">
+        <h2>Rugonge Davis- Accountant</h2>
+        <p>Rugonge Davis, our lead accountant, ensures that our financial operations are smooth and transparent. His dedication to financial excellence is key to maintaining the trust and integrity of Nic Luxury Motors.</p>
+    </div>
+    </div>
+
+    <div class="mission-vision-container">
+    <div class="mission-box">
+        <div class="overlay">
+        <h2>Our Mission</h2>
+        <p>To redefine luxury driving by delivering world-class vehicles that combine elegance, innovation, and performance — providing our clients with a truly exceptional experience.</p>
+        </div>
+    </div>
+    <div class="vision-box">
+        <div class="overlay">
+        <h2>Our Vision</h2>
+        <p>To become the leading name in luxury automotive solutions, known for our commitment to quality, customer satisfaction, and cutting-edge advancements in the industry.</p>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+
+<section class="map-section">
+<div class="container">
+    <h2>Our Location</h2>
+    <div id="map"></div>
+</div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>About Us</h4>
+        <p>Nic Luxury Motors is committed to delivering the finest in luxury cars, with impeccable style and performance.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="zander.html">Home</a></li>
+          <li><a href="About.html">About Us</a></li>
+          <li><a href="models.html">Models</a></li>
+          <li><a href="Shipping.html">Shipping solutions</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <ul class="social-icons">
+          <li><a href="#" aria-label="Facebook"><img src="Luxury/facebook-icon.png" alt="facebook"></a></li>
+          <li><a href="#" aria-label="Twitter"><img src="Luxury/twitter-icon.png" alt="twitter"></a></li>
+          <li><a href="#" aria-label="YouTube"><img src="Luxury/youtube-icon.png" alt="youtube"></a></li>
+          <li><a href="#" aria-label="LinkedIn"><img src="Luxury/linkedin-icon.png" alt="linkedin"></a></li>
+          <li><a href="#" aria-label="Instagram"><img src="Luxury/instagram-icon.png" alt="instagram"></a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <address>
+            <p>123 Nic Luxury Avenue,Kampala, Uganda</p>
+          <p>Phone: <a href="tel:+256760845198">+256 760 845198</a></p>
+          <p>Phone: <a href="tel:+256742505141">+256 742 505141</a></p>
+          <p>Email: <a href="mailto:info@nicluxurymotors.com">info@nicluxurymotors.com</a></p>
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="currentYear">2025</span> Nic Luxury Motors. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+// Navbar scroll effect
+const navbar = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Mobile menu toggle
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    menuBtn.innerHTML = navLinks.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+});
+
+// Initialize map
+const map = L.map('map').setView([0.3365, 32.6111], 15);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+L.marker([0.3365, 32.6111]).addTo(map)
+.bindPopup('<b>Nic Luxury Motors Ltd</b><br>Plot M428, Jinja Road, Nakawa, Kampala')
+.openPopup();
+
+L.circle([0.3365, 32.6111], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 100
+}).addTo(map).bindPopup('<b>Nic Luxury Motors</b>').openPopup();
+
+// Animate elements on scroll
+const animateOnScroll = () => {
+    const elements = document.querySelectorAll('.about-container, .mission-vision-container, .map-section');
+    
+    elements.forEach((element, index) => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementPosition < windowHeight - 100) {
+            element.style.animationPlayState = 'running';
+        }
+    });
+};
+
+window.addEventListener('scroll', animateOnScroll);
+window.addEventListener('load', animateOnScroll);
+
+// Update copyright year dynamically
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+<title>Models - Nic Luxury Motors</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+<link rel="shortcut icon" href="Luxury/screen2.jpeg" type="image/x-icon" />
+<style>
+    /* Base Styles */
+    :root {
+      --primary-color: #00ffff;
+      --secondary-color: #0096ff;
+      --dark-bg: #000;
+      --text-light: #fff;
+      --text-gray: #ccc;
+      --footer-bg: #111;
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Lato', sans-serif;
+      overflow-x: hidden;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* Header & Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.5);
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+    }
+
+    nav.scrolled {
+      background: rgba(0, 0, 0, 0.95);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      padding: 5px 0;
+    }
+
+    .menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+
+   
+.nav-search {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 20px;
+  position: relative;
+}
+
+/* Search icon for mobile */
+.search-icon-mobile {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 15px;
+  transition: var(--transition);
+}
+
+.search-icon-mobile:hover {
+  color: var(--primary-color);
+}
+
+/* Mobile search container */
+.mobile-search-container {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  padding: 15px;
+  background: rgba(250, 249, 249, 0.95);
+  z-index: 1001;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-search-container.active {
+  display: block;
+  animation: fadeInDown 0.3s ease-out;
+}
+
+.mobile-search-container .nav-search {
+  width: 100%;
+  margin: 0;
+}
+
+.mobile-search-container input[type="text"] {
+  width: 100% !important;
+}
+
+@media (max-width: 992px) {
+  .nav-search {
+    display: none;
+  }
+  
+  .search-icon-mobile {
+    display: block;
+  }
+}
+
+@media (min-width: 993px) {
+  .mobile-search-container {
+    display: none !important;
+  }
+}
+
+    .nav-search input[type="text"] {
+      padding: 10px 20px;
+      width: 200px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      margin-right: 10px;
+      transition: var(--transition);
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      font-size: 14px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-search input[type="text"]::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .nav-search input[type="text"]:focus {
+      outline: none;
+      background: rgba(0, 0, 0, 0.8);
+      width: 250px;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    }
+
+    .nav-search button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.8), rgba(0, 150, 255, 0.8));
+      color: white;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-search button:hover {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+    }
+
+    /* Navigation Links */
+    .nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links li {
+      margin: 0 15px;
+      position: relative;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      padding: 5px 0;
+      position: relative;
+      transition: var(--transition);
+      font-size: 16px;
+    }
+
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .menu-btn {
+      display: none;
+      color: var(--text-light);
+      font-size: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: transform 0.3s ease;
+      z-index: 1001;
+    }
+
+    .menu-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Dropdown Menu */
+    .nav-links .dropdown {
+      position: relative;
+    }
+
+    .nav-links .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 200px;
+      z-index: 1;
+      top: 100%;
+      left: 0;
+      border-radius: 8px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      animation: fadeInDown 0.3s ease-out forwards;
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    .nav-links .dropdown-content li a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .nav-links .dropdown-content li a:hover {
+      background-color: var(--secondary-color);
+      color: white;
+      padding-left: 20px;
+    }
+
+    .nav-links .dropdown:hover .dropdown-content {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Social Media Icons */
+    .social-media {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-media li a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .social-media li a img {
+      width: 20px;
+      height: 20px;
+      transition: var(--transition);
+    }
+
+    .social-media li a::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      top: 0;
+      left: -100%;
+      transition: 0.4s;
+      z-index: -1;
+    }
+
+    .social-media li a:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+    }
+
+    .social-media li a:hover img {
+      transform: scale(1.2);
+    }
+
+    .social-media li a:hover::before {
+      left: 0;
+    }
+
+    /* Main Content Styles */
+    main {
+      padding-top: 80px;
+    }
+
+    .brand-section {
+      margin: 50px 0;
+      animation: fadeIn 1s ease-out both;
+    }
+
+    .brand-section h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--text-light);
+      animation: textGlow 3s ease-in-out infinite alternate;
+    }
+
+    .vehicle-category {
+      margin-bottom: 40px;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding-bottom: 20px;
+    }
+
+    .vehicle-category h3 {
+      font-size: 1.8rem;
+      margin: 30px 0 20px;
+      padding-left: 15px;
+      border-left: 5px solid var(--primary-color);
+      color: var(--text-light);
+      white-space: normal;
+    }
+
+    .vehicle-grid {
+      display: inline-flex;
+      gap: 25px;
+    }
+
+    .vehicle-item {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: inline-block;
+      min-width: 280px;
+    }
+
+    .vehicle-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .vehicle-item img {
+      width: 100%;
+      border-radius: 10px;
+      height: 200px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .vehicle-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .vehicle-caption {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--text-light);
+      white-space: normal;
+    }
+    .ad-banner {
+      position: relative;
+      background-color: #fff3e0;
+      border: 2px solid #ff9800;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      max-width: 350px;
+      margin: 20px auto;
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      transition: 0.3s;
+    }
+    
+    .ad-banner h3 {
+      color: #d84315;
+      margin-top: 0;
+    }
+    
+    .ad-banner p {
+      color: #5d4037;
+      font-size: 1rem;
+    }
+    
+    .ad-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #ff9800;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+    
+    .ad-button:hover {
+      background-color: #e65100;
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 6px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      color: #d84315;
+    }
+    
+
+    /* Footer */
+    footer {
+      background-color: var(--footer-bg);
+      color: var(--text-light);
+      padding: 50px 0 20px;
+      animation: fadeIn 1.5s ease-out both;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 30px;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 220px;
+      transition: var(--transition);
+    }
+
+    .footer-section:hover {
+      transform: translateY(-5px);
+    }
+
+    .footer-section h4 {
+      font-weight: 900;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      font-size: 18px;
+    }
+
+    .footer-section h4:after {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 2px;
+      bottom: -8px;
+      left: 0;
+      background-color: var(--primary-color);
+    }
+
+    .footer-section ul,
+    .footer-section p,
+    .footer-section a {
+      font-size: 14px;
+      color: var(--text-gray);
+    }
+
+    .footer-section ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-section ul li a {
+      text-decoration: none;
+      color: var(--text-gray);
+      transition: var(--transition);
+      display: inline-block;
+    }
+
+    .footer-section ul li a:hover {
+      color: var(--text-light);
+      transform: translateX(5px);
+    }
+
+    /* Footer Social Icons */
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icons li {
+      list-style: none;
+    }
+
+    .social-icons li a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      transition: var(--transition);
+    }
+
+    .social-icons li a img {
+      width: 18px;
+      height: 18px;
+      transition: var(--transition);
+    }
+
+    .social-icons li a:hover {
+      background: var(--primary-color);
+      transform: scale(1.1);
+    }
+
+    .social-icons li a:hover img {
+      transform: scale(1.2);
+      filter: brightness(0) invert(0);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 50px;
+      border-top: 1px solid #444;
+      padding-top: 20px;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: var(--text-gray);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .vehicle-grid {
+        gap: 15px;
+      }
+      .vehicle-item {
+        min-width: 250px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .footer-container {
+        gap: 20px;
+      }
+      .nav-search {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .menu-btn {
+        display: block;
+        order: 2;
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 280px;
+        background: rgba(0, 0, 0, 0.98);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 80px 30px;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        z-index: 1000;
+        transform: translateX(100%);
+      }
+
+      .nav-links.active {
+        display: flex;
+        transform: translateX(0);
+      }
+
+      .nav-links li {
+        margin: 15px 0;
+        width: 100%;
+        opacity: 0;
+        animation: fadeInRight 0.5s ease-out forwards;
+      }
+
+      .nav-links li:nth-child(1) { animation-delay: 0.1s; }
+      .nav-links li:nth-child(2) { animation-delay: 0.2s; }
+      .nav-links li:nth-child(3) { animation-delay: 0.3s; }
+      .nav-links li:nth-child(4) { animation-delay: 0.4s; }
+      .nav-links li:nth-child(5) { animation-delay: 0.5s; }
+      
+      .nav-links .dropdown-content {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        background: rgba(255,255,255,0.1);
+        margin-top: 10px;
+      }
+      
+      .nav-links .dropdown-content li a {
+        color: var(--text-gray);
+        padding-left: 30px;
+      }
+
+      .social-media {
+        display: none;
+      }
+      
+      .footer-section {
+        min-width: 100%;
+      }
+      
+      .vehicle-category {
+        white-space: normal;
+      }
+      .vehicle-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        white-space: normal;
+      }
+      .vehicle-item {
+        min-width: auto;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from { 
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from { 
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes textGlow {
+      from {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+      to {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.3);
+      }
+    }
+    
+    /* Accessibility improvements */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+    
+    /* Focus styles for accessibility */
+    a:focus, button:focus, input:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 3px;
+    }
+</style>
+</head>
+
+<body>
+  <nav id="mainNav" aria-label="Main navigation">
+    <div class="container">
+      <div class="menu">
+        <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="About.html">About Us</a></li>
+          <li class="dropdown">
+            <a href="models.html">Models <i class="fas fa-caret-down"></i></a>
+            <ul class="dropdown-content">
+              <li><a href="#mercedes">Mercedes-Benz</a></li>
+              <li><a href="#toyota">Toyota</a></li>
+              <li><a href="#ford">Ford</a></li>
+              <li><a href="#rollsroyce">Rolls-Royce</a></li>
+              <li><a href="#BMW">BMW</a></li>
+            </ul>
+          </li>
+          <li><a href="Shipping.html">Shipping solutions</a></li>
+          <li><a href="login.html">Log in</a></li>
+        </ul>
+        
+        <!-- Desktop Search -->
+        <div class="nav-search">
+          <input type="text" id="searchInput" placeholder="Search models..." aria-label="Search models" />
+          <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <!-- Mobile Search Icon -->
+        <button class="search-icon-mobile" id="searchToggle" aria-label="Toggle search">
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <ul class="social-media" aria-label="Social media links">
+          <li><a href="#" aria-label="Facebook"><img src="Luxury/facebook-icon.png" alt="Facebook"></a></li>
+          <li><a href="#" aria-label="Twitter"><img src="Luxury/twitter-icon.png" alt="Twitter"></a></li>
+          <li><a href="#" aria-label="YouTube"><img src="Luxury/youtube-icon.png" alt="YouTube"></a></li>
+          <li><a href="#" aria-label="LinkedIn"><img src="Luxury/linkedin-icon.png" alt="LinkedIn"></a></li>
+          <li><a href="#" aria-label="Instagram"><img src="Luxury/instagram-icon.png" alt="Instagram"></a></li>
+        </ul>
+      </div>
+      
+      <!-- Mobile Search Container -->
+      <div class="mobile-search-container" id="mobileSearch">
+        <div class="nav-search">
+          <input type="text" id="mobileSearchInput" placeholder="Search models..." aria-label="Search models" />
+          <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+<main class="container">
+  <div class="brand-section" id="mercedes">
+    <h2>Mercedes-Benz</h2>
+    <div class="vehicle-category">
+      <h3>Luxury Rides</h3>
+      <div class="vehicle-grid">
+        <div class="vehicle-item"><img src="Luxury/s class.jpeg" alt="Mercedes S-Class"><div class="vehicle-caption">S-Class - $110,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/e class.jpeg" alt="Mercedes E-Class"><div class="vehicle-caption">E-Class Coupe - $75,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/maybach.jpeg" alt="Mercedes Maybach"><div class="vehicle-caption">Maybach GLS - $165,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/c class (1).jpeg" alt="Mercedes C-Class"><div class="vehicle-caption">C-Class Sedan - $45,000</div></div>
+      </div>
+    </div>
+    <div class="vehicle-category">
+      <h3>Pickups</h3>
+      <div class="vehicle-grid">
+        <div class="vehicle-item"><img src="Luxury/x class.jpeg" alt="Mercedes X-Class"><div class="vehicle-caption">X-Class - $60,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/44.jpeg" alt="Mercedes X-Class 4x4"><div class="vehicle-caption">X-Class 4x4 - $65,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/amg.jpeg" alt="Mercedes AMG"><div class="vehicle-caption">AMG Edition - $72,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/offroad.jpeg" alt="Mercedes Offroad"><div class="vehicle-caption">Offroad Special - $68,000</div></div>
+      </div>
+    </div>
+    <div class="vehicle-category">
+      <h3>Trucks</h3>
+      <div class="vehicle-grid">
+        <div class="vehicle-item"><img src="Luxury/actros.jpeg" alt="Mercedes Actros"><div class="vehicle-caption">Actros - $150,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/arocs.jpeg" alt="Mercedes Arocs"><div class="vehicle-caption">Arocs - $170,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/zetros.webp" alt="Mercedes Zetros"><div class="vehicle-caption">Zetros - $180,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/unimog.webp" alt="Mercedes Unimog"><div class="vehicle-caption">Unimog - $200,000</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-section" id="toyota">
+    <h2>Toyota</h2>
+    <div class="vehicle-category">
+      <h3>Luxury Rides</h3>
+      <div class="vehicle-grid">
+        <div class="vehicle-item"><img src="Luxury/-lexus-gx.jpeg" alt="Toyota Model 1"><div class="vehicle-caption">Lexus-GX-012 - $110,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/prado 250 series.webp " alt="Toyota Model 2"><div class="vehicle-caption">Prado 250 series - $75,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/prado tx.jpg" alt="Toyota Model 3"><div class="vehicle-caption">Prado-TX - $165,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/fortuner gxl.jpg" alt="Toyota Model 4"><div class="vehicle-caption">Fortuner-GXL - $45,000</div></div>
+      </div>
+    </div>
+    <div class="vehicle-category">
+      <h3>Pickups</h3>
+      <div class="vehicle-grid">
+        <div class="vehicle-item"><img src="Luxury/hilux rogue.jpeg" alt="Toyota Pickup 1"><div class="vehicle-caption">Hillux - $60,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/land cruiser.jpg" alt="Toyota Pickup 2"><div class="vehicle-caption">land Cruiser 4x4 - $65,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/tacoma.jpeg" alt="Toyota Pickup 3"><div class="vehicle-caption">tacoma - $72,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/tundra.jpg" alt="Toyota Pickup 4"><div class="vehicle-caption">tundra - $68,000</div></div>
+      </div>
+    </div>
+    <div class="vehicle-category">
+      <h3>Trucks</h3>
+      <div class="vehicle-grid">
+        <div class="vehicle-item"><img src="Luxury/hino.jpg" alt="Toyota Truck 1"><div class="vehicle-caption">Hino - $150,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/howo.jpg" alt="Toyota Truck 2"><div class="vehicle-caption">howo - $170,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/man.jpg" alt="Toyota Truck 3"><div class="vehicle-caption">Man - $180,000</div></div>
+        <div class="vehicle-item"><img src="Luxury//Leyland.jpg" alt="Toyota Truck 4"><div class="vehicle-caption">Leyland - $200,000</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-section" id="ford">
+    <h2>Ford</h2>
+    <div class="vehicle-category">
+      <h3>Luxury Rides</h3>
+      <div class="vehicle-grid">
+        <div class="vehicle-item"><img src="Luxury/everest.webp" alt="Ford Model 1"><div class="vehicle-caption">Everest - $110,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/ford-kuga.jpg" alt="Ford Model 2"><div class="vehicle-caption">Ford-Kuga - $75,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/mustang.jpg" alt="Ford Model 3"><div class="vehicle-caption">Ford-Mustang - $165,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/bronco.jpg" alt="Ford Model 4"><div class="vehicle-caption">Ford-Bronco - $45,000</div></div>
+      </div>
+    </div>
+    <div class="vehicle-category">
+      <h3>Pickups</h3>
+      <div class="vehicle-grid">
+        <div class="vehicle-item"><img src="Luxury/raptor.jpg" alt="Ford Pickup 1"><div class="vehicle-caption">Ford-Raptor - $60,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/ranger.png" alt="Ford Pickup 2"><div class="vehicle-caption">Ford-Ranger - $65,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/venom.webp" alt="Ford Pickup 3"><div class="vehicle-caption">Ford-venom - $72,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/offroad.webp" alt="Ford Pickup 4"><div class="vehicle-caption">Offroad Special - $68,000</div></div>
+      </div>
+    </div>
+
+  <div class="brand-section" id="rollsroyce">
+    <h2>Rolls-Royce</h2>
+    <div class="vehicle-category">
+      <h3>Luxury Rides</h3>
+      <div class="vehicle-grid">
+        <div class="vehicle-item"><img src="Luxury/phantom.jpg" alt="Rolls-Royce Model 1"><div class="vehicle-caption">Phantom - $450,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/ghost.webp" alt="Rolls-Royce Model 2"><div class="vehicle-caption">Ghost - $350,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/cullinan.jpg" alt="Rolls-Royce Model 3"><div class="vehicle-caption">Cullinan - $400,000</div></div>
+        <div class="vehicle-item"><img src="Luxury/wraith.jpg" alt="Rolls-Royce Model 4"><div class="vehicle-caption">Wraith - $380,000</div></div>
+      </div>
+    </div>
+    <div class="brand-section" id="BMW">
+      <h2>BMW</h2>
+      <div class="vehicle-category">
+        <h3>Luxury Rides</h3>
+        <div class="vehicle-grid">
+          <div class="vehicle-item"><img src="Luxury/7 series.jpg" alt="BMW Model 1"><div class="vehicle-caption">7 Series - $450,000</div></div>
+          <div class="vehicle-item"><img src="Luxury/touring.jpg" alt="BMW Model 2"><div class="vehicle-caption">BMW-Touring- $350,000</div></div>
+          <div class="vehicle-item"><img src="Luxury/sport.jpg" alt="BMW Model 3"><div class="vehicle-caption">BMW-Sport - $400,000</div></div>
+          <div class="vehicle-item"><img src="Luxury/G80.jpg" alt="BMW Model 4"><div class="vehicle-caption">BMW-G80 - $380,000</div></div>
+        </div>
+      </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>About Us</h4>
+        <p>Nic Luxury Motors is committed to delivering the finest in luxury cars, with impeccable style and performance.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="zander.html">Home</a></li>
+          <li><a href="About.html">About Us</a></li>
+          <li><a href="models.html">Models</a></li>
+          <li><a href="Shipping.html">Shipping solutions</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <ul class="social-icons">
+          <li><a href="#" aria-label="Facebook"><img src="Luxury/facebook-icon.png" alt="facebook"></a></li>
+          <li><a href="#" aria-label="Twitter"><img src="Luxury/twitter-icon.png" alt="twitter"></a></li>
+          <li><a href="#" aria-label="YouTube"><img src="Luxury/youtube-icon.png" alt="youtube"></a></li>
+          <li><a href="#" aria-label="LinkedIn"><img src="Luxury/linkedin-icon.png" alt="linkedin"></a></li>
+          <li><a href="#" aria-label="Instagram"><img src="Luxury/instagram-icon.png" alt="instagram"></a></li>
+        </ul>
+      </div>
+      <div id="mercedesAd" class="ad-banner">
+        <span class="close-btn" onclick="closeAd()">✕</span>
+        <h3>🚗 Special Offer!</h3>
+        <p>Get the luxurious <strong>Mercedes-Benz</strong> at an exclusive price this week only!</p>
+        <a href="contact.html" class="ad-button">Book a Test Drive</a>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <address>
+          <p>123 Nic Luxury Avenue,Kampala, Uganda</p>
+          <p>Phone: <a href="tel:+256760845198">+256 760 845198</a></p>
+          <p>Phone: <a href="tel:+256742505141">+256 742 505141</a></p>
+          <p>Email: <a href="mailto:info@nicluxurymotors.com">info@nicluxurymotors.com</a></p>
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="currentYear">2025</span> Nic Luxury Motors. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile search toggle
+const searchToggle = document.getElementById('searchToggle');
+const mobileSearch = document.getElementById('mobileSearch');
+const mobileSearchInput = document.getElementById('mobileSearchInput');
+
+searchToggle.addEventListener('click', function(e) {
+  e.stopPropagation();
+  mobileSearch.classList.toggle('active');
+  
+  if (mobileSearch.classList.contains('active')) {
+    mobileSearchInput.focus();
+  }
+});
+
+// Close mobile search when clicking outside
+document.addEventListener('click', function(e) {
+  if (!mobileSearch.contains(e.target) && e.target !== searchToggle) {
+    mobileSearch.classList.remove('active');
+  }
+});
+
+// Close mobile search when pressing Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    mobileSearch.classList.remove('active');
+  }
+});
+
+// Search functionality (same for both desktop and mobile)
+function handleSearch(query) {
+  // Implement your search logic here
+  console.log('Searching for:', query);
+  // You can redirect to a search results page or filter content
+}
+
+// Desktop search
+document.querySelector('.nav-search button').addEventListener('click', function() {
+  const query = document.getElementById('searchInput').value.trim();
+  if (query) handleSearch(query);
+});
+
+// Mobile search
+document.querySelector('.mobile-search-container .nav-search button').addEventListener('click', function() {
+  const query = mobileSearchInput.value.trim();
+  if (query) {
+    handleSearch(query);
+    mobileSearch.classList.remove('active');
+  }
+});
+
+// Allow search on Enter key
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    const query = this.value.trim();
+    if (query) handleSearch(query);
+  }
+});
+
+mobileSearchInput.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    const query = this.value.trim();
+    if (query) {
+      handleSearch(query);
+      mobileSearch.classList.remove('active');
+    }
+  }
+});
+  // Navbar scroll effect
+  const navbar = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menu-btn');
+  const navLinks = document.getElementById('navLinks');
+  
+  menuBtn.addEventListener('click', function(e) {
+    e.stopPropagation(); // Prevent event from bubbling to document
+    navLinks.classList.toggle('active');
+    const isExpanded = navLinks.classList.contains('active');
+    this.setAttribute('aria-expanded', isExpanded);
+    this.innerHTML = isExpanded ? 
+      '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    document.body.style.overflow = isExpanded ? 'hidden' : '';
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!navLinks.contains(e.target) && e.target !== menuBtn) {
+      navLinks.classList.remove('active');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Close menu when clicking on links
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        navLinks.classList.remove('active');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  // Smooth scrolling for all links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const target = document.querySelector(targetId);
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 80,
+          behavior: 'smooth'
+        });
+        
+        if (targetId !== '#') {
+          history.pushState(null, null, targetId);
+        }
+      }
+    });
+  });
+  function closeAd() {
+    const ad = document.getElementById('mercedesAd');
+    ad.style.display = 'none';
+  }
+  
+
+  // Update copyright year
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
