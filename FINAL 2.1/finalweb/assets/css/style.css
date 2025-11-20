@@ -1,0 +1,24 @@
+:root{--navy:#0a2540;--accent:#1abc9c;--light:#f8f9fa;--dark:#0b1620}
+body{font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+.topbar{background:#87CEEB}
+.topbar, .topbar a{color:var(--dark)}
+.topbar a{text-decoration:none}
+.topbar a:hover{text-decoration:underline}
+.bg-navy{background:var(--navy)!important}
+.text-navy{color:var(--navy)!important}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{filter:brightness(.95);color:#fff}
+.footer-link{color:#e9eef5;text-decoration:none}
+.footer-link:hover{text-decoration:underline;color:#fff}
+.hero{background:linear-gradient(120deg, var(--navy), #123b66);color:#fff}
+/* slider sizing */
+.hero .carousel-item img{height:520px;object-fit:cover}
+.counter{background:#fff;border-radius:10px;box-shadow:0 4px 16px rgba(10,37,64,.08)}
+.product-card{transition:transform .2s, box-shadow .2s}
+.product-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(10,37,64,.12)}
+.category-badge{background:var(--light);color:var(--navy);border:1px solid #dbe3ee;border-radius:50rem;padding:.25rem .6rem}
+.nav-link{font-weight:500}
+/* dropdown tweaks */
+.dropdown-menu{border-radius:.5rem;}
+/* cart badge */
+#cart-count{min-width:1.25rem}

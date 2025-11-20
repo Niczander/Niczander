@@ -1,0 +1,151 @@
+{
+    "collections": [
+        {
+            "id": 5,
+            "name": "Kitchenware & Appliances",
+            "description": "All cutlery and cooking items"
+        },
+        {
+            "id": 4,
+            "name": "Home textiles",
+            "description": "Fiber pillows and other beddings"
+        },
+        {
+            "id": 3,
+            "name": "Furniture",
+            "description": "Sofas, Woodropes, Beds and dining tables"
+        },
+        {
+            "id": 2,
+            "name": "Electronics",
+            "description": "Smartphones, TVs, laptops, sound bars and solars"
+        }
+    ],
+    "products": [
+        {
+            "id": 7,
+            "name": "HP Pavilion14gen (icore7 SSD 12GBRAM 512GB storage)",
+            "price": 1570000,
+            "image_url": "\/finalweb\/assets\/uploads\/prod_1763608941_c72e5d73.webp",
+            "collection_id": 2,
+            "collection": "Electronics"
+        },
+        {
+            "id": 6,
+            "name": "SPJ 5L Electric Pressure Cooker With IMD Touch Panel, Silver",
+            "price": 230000,
+            "image_url": "\/finalweb\/assets\/uploads\/prod_1763608689_f15bab57.jpg",
+            "collection_id": 5,
+            "collection": "Kitchenware & Appliances"
+        },
+        {
+            "id": 5,
+            "name": "Hooded bathrobe",
+            "price": 35000,
+            "image_url": "\/finalweb\/assets\/uploads\/prod_1763608205_f59ef75a.jpg",
+            "collection_id": 4,
+            "collection": "Home textiles"
+        },
+        {
+            "id": 4,
+            "name": "3door wardrope",
+            "price": 760000,
+            "image_url": "\/finalweb\/assets\/uploads\/prod_1763607839_07a79a64.jpg",
+            "collection_id": 3,
+            "collection": "Furniture"
+        },
+        {
+            "id": 3,
+            "name": "Lenovo IdeaPad 3 (Ryzen 5, 16GB, 512GB)",
+            "price": 1260000,
+            "image_url": "\/finalweb\/assets\/uploads\/prod_1763576920_3be83ff6.png",
+            "collection_id": 2,
+            "collection": "Electronics"
+        }
+    ],
+    "posts": [
+        {
+            "id": 4,
+            "title": "Electronics sale off",
+            "excerpt": "Get yourself quality electronics through this season at a least price",
+            "image_url": "\/finalweb\/assets\/uploads\/post_1763108693_9be5881b.jpg",
+            "created_at": "2025-11-14 11:24:53"
+        },
+        {
+            "id": 3,
+            "title": "XMASS bonanza",
+            "excerpt": "Get yourself goods at Uhome arenas for the festival season at a discount of 20%",
+            "image_url": "\/finalweb\/assets\/uploads\/post_1763108131_589ec7ce.jpg",
+            "created_at": "2025-11-14 11:15:31"
+        },
+        {
+            "id": 2,
+            "title": "New Cargo landed home safely",
+            "excerpt": "your orders are valued with quality deliveries. Run for the new cargo",
+            "image_url": "\/finalweb\/assets\/uploads\/post_1763104037_f23cee2b.jpg",
+            "created_at": "2025-11-14 10:07:17"
+        }
+    ],
+    "slides": [
+        {
+            "id": 6,
+            "title": "Furniture at the peak",
+            "subtitle": "Top quality furniture found at Uhome supermarkets only",
+            "image_url": "\/finalweb\/assets\/uploads\/slide_1763109955_1b5445d7.jpg",
+            "video_url": null
+        },
+        {
+            "id": 5,
+            "title": "Home Goods",
+            "subtitle": "Beautiful and impressive stay home",
+            "image_url": "\/finalweb\/assets\/uploads\/slide_1763107447_da57687b.jpg",
+            "video_url": null
+        },
+        {
+            "id": 4,
+            "title": "Electronics",
+            "subtitle": "quality and durability",
+            "image_url": "\/finalweb\/assets\/uploads\/slide_1763102941_26e441a6.jpg",
+            "video_url": null
+        }
+    ],
+    "branches": [
+        {
+            "id": 7,
+            "name": "kawempe",
+            "district": "Kawempe North",
+            "address": "0774562722",
+            "phone": "0774562722",
+            "opening_hours": "14"
+        },
+        {
+            "id": 6,
+            "name": "Entebbe branch",
+            "district": "Entebbe",
+            "address": "0774562722",
+            "phone": "0774562722",
+            "opening_hours": "14"
+        },
+        {
+            "id": 5,
+            "name": "Nakawa-Ntinda branch",
+            "district": "kampala",
+            "address": "0742505141",
+            "phone": "0742505141",
+            "opening_hours": "24-7"
+        },
+        {
+            "id": 4,
+            "name": "Nsambya branch",
+            "district": "kampala",
+            "address": "0760845198",
+            "phone": "0760845198",
+            "opening_hours": "12"
+        }
+    ],
+    "metrics": {
+        "Products": 1,
+        "Branches": 3,
+        "Years of service": 3
+    }
+}
